@@ -130,8 +130,8 @@ create_rootfs_cache()
 		# stage: debootstrap base system
 		if [[ $NO_APT_CACHER != yes ]]; then
 			# apt-cacher-ng apt-get proxy parameter
-			local apt_extra='-o Acquire::http::Proxy="http://${APT_PROXY_ADDR:-localhost:3142}"'
-			local apt_mirror="http://${APT_PROXY_ADDR:-localhost:3142/}$APT_MIRROR"
+			local apt_mirror="http://${APT_PROXY_ADDR:-localhost:3142}/$APT_MIRROR"
+			local apt_extra='-o Acquire::http::Proxy="${apt_mirror}"'
 		else
 			local apt_mirror="http://$APT_MIRROR"
 		fi
